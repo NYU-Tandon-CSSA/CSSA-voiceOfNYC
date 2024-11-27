@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Bar Chart</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+      background-image: url('./assets/img/background1.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    #percentages {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .bar-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-end;
+      height: 300px;
+      position: relative;
+      margin: 0 auto;
+      width: 600px;
+      perspective: 3000px;
+      transform-style: preserve-3d;
+    }
+
+    .bar {
+      width: 100px;
+      position: relative;
+      transform: rotateY(-20deg);
+      transform-origin: center;
+      transition: all 0.5s ease;
+      margin: 0 40px;
+    }
+
+    .bar-front {
+      background: #4caf50;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 3;
+    }
+
+    .bar-side {
+      background: #2e7d32;
+      height: 100%;
+      width: 40px;
+      position: absolute;
+      right: -40px;
+      top: -20px;
+      transform: skewY(-45deg);
+      transform-origin: top;
+      z-index: 2;
+    }
+
+    .bar-top {
+      background: #66bb6a;
+      height: 40px;
+      width: calc(100% + 0px);
+      position: absolute;
+      top: -40px;
+      transform: skewX(-45deg);
+      transform-origin: bottom;
+      z-index: 1;
+    }
+
+    .bar span {
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 16px;
+      font-weight: bold;
+      color: transparent;
+    }
+
+    /* 修改第一个柱状图(红色系) */
+    #bar1 .bar-front {
+      background: #ff4444;
+    }
+    #bar1 .bar-side {
+      background: #cc0000;
+    }
+    #bar1 .bar-top {
+      background: #ff6666;
+    }
+
+    /* 修改第二个柱状图(蓝色系) */
+    #bar2 .bar-front {
+      background: #2196F3;
+    }
+    #bar2 .bar-side {
+      background: #1565C0;
+    }
+    #bar2 .bar-top {
+      background: #42A5F5;
+    }
+
+    .percentage-container {
+      display: flex;
+      justify-content: space-around;
+      width: 600px;
+      margin: 20px auto 0;
+    }
+
+    .percentage-text {
+      font-size: 36px;
+      font-weight: bold;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div style="margin: 40px 0; display: flex; justify-content: center; align-items: center; gap: 40px;">
+    <div style="display: flex; align-items: center; gap: 20px;">
+      <img src="./assets/img/image2.jpg" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover;">
+      <span style="font-size: 36px; font-weight: bold; color: white;">选手名字1</span>
+    </div>
+    <span style="font-size: 48px; font-weight: bold; color: white;">PK</span>
+    <div style="display: flex; align-items: center; gap: 20px;">
+      <span style="font-size: 36px; font-weight: bold; color: white;">选手名字2</span>
+      <img src="./assets/img/image4.jpg" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover;">
+    </div>
+  </div>
+  <div class="bar-container">
+    <div class="bar" id="bar1" style="height: 50%;">
+      <div class="bar-front"></div>
+      <div class="bar-side"></div>
+      <div class="bar-top"></div>
+      <span id="bar1-label">50%</span>
+    </div>
+    <div class="bar" id="bar2" style="height: 50%;">
+      <div class="bar-front"></div>
+      <div class="bar-side"></div>
+      <div class="bar-top"></div>
+      <span id="bar2-label">50%</span>
+    </div>
+  </div>
+  <div class="percentage-container">
+    <span id="candidate1-percentage" class="percentage-text">50%</span>
+    <span id="candidate2-percentage" class="percentage-text">50%</span>
+  </div>
+
+  <!-- 引入 JavaScript 文件 -->
+  <script src="score11.js"></script>
+</body>
+</html>
