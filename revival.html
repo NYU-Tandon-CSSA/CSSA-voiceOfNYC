@@ -12,12 +12,15 @@
     body {
       font-family: Arial, sans-serif;
       text-align: center;
-      margin: 20px;
+      margin: 0;
       background-image: url('./assets/img/background1.png');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     h1 {
@@ -39,6 +42,8 @@
       width: 1000px;
       perspective: 3000px;
       transform-style: preserve-3d;
+      margin-bottom: 0;
+      margin-right: 100px;
     }
 
     .bar {
@@ -85,12 +90,24 @@
 
     .bar span {
       position: absolute;
-      top: -60px;
+      top: -100px;
       left: 50%;
       transform: translateX(-50%);
-      font-size: 16px;
+      font-size: 48px;
       font-weight: bold;
-      color: transparent;
+      color: white;
+      font-family: "Trade Winds", system-ui;
+    }
+
+    .bar span.percentage-text {
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 48px;
+      font-weight: bold;
+      color: white;
+      font-family: "Trade Winds", system-ui;
     }
 
     /* 第一个柱状图 */
@@ -159,20 +176,6 @@
       background: #90A4AE;
     }
 
-    .percentage-container {
-      display: flex;
-      justify-content: space-around;
-      width: 1000px;
-      margin: 20px auto 0;
-    }
-
-    .percentage-text {
-      font-size: 48px;
-      font-weight: bold;
-      color: white;
-      font-family: "Trade Winds", system-ui;
-    }
-
     /* Fonts */
     .trade-winds-regular {
       font-family: "Trade Winds", system-ui;
@@ -185,65 +188,68 @@
       font-weight: 700;
       font-style: normal;
     }
+
+    .name-label {
+        position: absolute;
+        bottom: -40px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 32px;
+        color: white;
+        font-family: "ZCOOL XiaoWei", sans-serif;
+        font-weight: 700;
+        white-space: nowrap;
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+    }
   </style>
 </head>
 <body>
-  <div style="margin: 40px 0; display: flex; justify-content: center; align-items: center; gap: 40px;">
-    <div style="display: flex; align-items: center; gap: 20px;">
-      <img src="./assets/img/image1.jpg" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;">
-      <span class="zcool-xiaowei-regular" style="font-size: 50px; color: white;">选手名字1</span>
-    </div>
-    <span class="trade-winds-regular" style="font-size: 72px; color: white;">PK</span>
-    <div style="display: flex; align-items: center; gap: 20px;">
-      <span class="zcool-xiaowei-regular" style="font-size: 50px; color: white;">选手名字2</span>
-      <img src="./assets/img/image2.jpg" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;">
-    </div>
-  </div>
+  <h1 style="color: white; font-family: 'Trade Winds', system-ui; font-size: 48px; margin-bottom: 40px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">
+    Revival Round
+  </h1>
   <div class="bar-container">
     <div class="bar" id="bar1" style="height: 0%;">
       <div class="bar-front"></div>
       <div class="bar-side"></div>
       <div class="bar-top"></div>
-      <span id="bar1-label">0%</span>
+      <span id="bar1-label" class="percentage-text">0%</span>
+      <div id="name1" class="name-label"></div>
     </div>
     <div class="bar" id="bar2" style="height: 0%;">
       <div class="bar-front"></div>
       <div class="bar-side"></div>
       <div class="bar-top"></div>
-      <span id="bar2-label">0%</span>
+      <span id="bar2-label" class="percentage-text">0%</span>
+      <div id="name2" class="name-label"></div>
     </div>
     <div class="bar" id="bar3" style="height: 0%;">
       <div class="bar-front"></div>
       <div class="bar-side"></div>
       <div class="bar-top"></div>
-      <span id="bar3-label">0%</span>
+      <span id="bar3-label" class="percentage-text">0%</span>
+      <div id="name3" class="name-label"></div>
     </div>
     <div class="bar" id="bar4" style="height: 0%;">
       <div class="bar-front"></div>
       <div class="bar-side"></div>
       <div class="bar-top"></div>
-      <span id="bar4-label">0%</span>
+      <span id="bar4-label" class="percentage-text">0%</span>
+      <div id="name4" class="name-label"></div>
     </div>
     <div class="bar" id="bar5" style="height: 0%;">
       <div class="bar-front"></div>
       <div class="bar-side"></div>
       <div class="bar-top"></div>
-      <span id="bar5-label">0%</span>
+      <span id="bar5-label" class="percentage-text">0%</span>
+      <div id="name5" class="name-label"></div>
     </div>
     <div class="bar" id="bar6" style="height: 0%;">
       <div class="bar-front"></div>
       <div class="bar-side"></div>
       <div class="bar-top"></div>
-      <span id="bar6-label">0%</span>
+      <span id="bar6-label" class="percentage-text">0%</span>
+      <div id="name6" class="name-label"></div>
     </div>
-  </div>
-  <div class="percentage-container">
-    <span id="candidate1-percentage" class="percentage-text">0%</span>
-    <span id="candidate2-percentage" class="percentage-text">0%</span>
-    <span id="candidate3-percentage" class="percentage-text">0%</span>
-    <span id="candidate4-percentage" class="percentage-text">0%</span>
-    <span id="candidate5-percentage" class="percentage-text">0%</span>
-    <span id="candidate6-percentage" class="percentage-text">0%</span>
   </div>
 
   <!-- 引入 JavaScript 文件 -->
