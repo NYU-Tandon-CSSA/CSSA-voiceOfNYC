@@ -1,6 +1,6 @@
 // Google Sheets 配置
 const SHEET_ID = '1wMH-vGM6BY-kh0fHDpJwsMlR28m66CemVViujBpZPVU'; // 替换为你的Google Sheet ID
-const RANGE = 'Revival!A1:B6'; // 要获取的范围
+const RANGE = 'Revival!A1:B5'; 
 const API_KEY = 'AIzaSyDCoRajSD0Eux3Yf7ZsiIt06ayoB_g1Tz0'; // 替换为你的API密钥
 
 async function fetchVoteData() {
@@ -21,7 +21,7 @@ async function fetchVoteData() {
             const percentages = votes.map(vote => ((vote / totalVotes) * 100).toFixed(1));
 
             // 更新每个柱状图、标签和选手名字
-            for (let i = 0; i <= 5; i++) {
+            for (let i = 0; i < 5; i++) {
                 const percentage = percentages[i];
                 const name = names[i];
                 const barNum = i + 1;
