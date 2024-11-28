@@ -1,6 +1,6 @@
 // Google Sheets 配置
 const SHEET_ID = '1wMH-vGM6BY-kh0fHDpJwsMlR28m66CemVViujBpZPVU'; // 替换为你的Google Sheet ID
-const RANGE = 'Sheet1!B3:B4'; // 要获取的范围
+const RANGE = 'Semi!B3:B4'; // 要获取的范围
 const API_KEY = 'AIzaSyDCoRajSD0Eux3Yf7ZsiIt06ayoB_g1Tz0'; // 替换为你的API密钥
 
 async function fetchVoteData() {
