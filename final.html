@@ -116,5 +116,15 @@
         </div>
     </div>
     <script src="final.js"></script>
+
+    <!-- 键盘导航 -->
+  <script>
+    document.addEventListener('keydown', function(event) {
+      // 当按下左方向键或者数字键0时跳转到revival.html
+      if (event.key === 'ArrowLeft' || event.key === '0') {
+        window.location.href = 'revival.html';
+      }
+    });
+  </script>
 </body>
 </html>

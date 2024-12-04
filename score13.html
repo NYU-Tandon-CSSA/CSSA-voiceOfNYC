@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Revival Round</title>
+  <title>Semi1</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Trade+Winds&display=swap" rel="stylesheet">
@@ -13,14 +13,15 @@
       font-family: Arial, sans-serif;
       text-align: center;
       margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
       background-image: url('./assets/img/background1.png');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
 
     h1 {
@@ -36,23 +37,21 @@
       display: flex;
       justify-content: space-around;
       align-items: flex-end;
-      height: 300px;
+      height: 40vh;
       position: relative;
       margin: 0 auto;
-      width: 1000px;
+      width: 50vw;
       perspective: 3000px;
       transform-style: preserve-3d;
-      margin-bottom: 0;
-      margin-right: 100px;
     }
 
     .bar {
-      width: 80px;
+      width: 100px;
       position: relative;
       transform: rotateY(-20deg);
       transform-origin: center;
       transition: all 0.5s ease;
-      margin: 0 20px;
+      margin: 0 40px;
     }
 
     .bar-front {
@@ -90,24 +89,12 @@
 
     .bar span {
       position: absolute;
-      top: -100px;
+      top: -60px;
       left: 50%;
       transform: translateX(-50%);
-      font-size: 48px;
+      font-size: 16px;
       font-weight: bold;
-      color: white;
-      font-family: "Trade Winds", system-ui;
-    }
-
-    .bar span.percentage-text {
-      position: absolute;
-      top: -100px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 48px;
-      font-weight: bold;
-      color: white;
-      font-family: "Trade Winds", system-ui;
+      color: transparent;
     }
 
     /* 第一个柱状图 */
@@ -132,37 +119,18 @@
       background: #42A5F5;
     }
 
-    /* 第三个柱状图 */
-    #bar3 .bar-front {
-      background: #9C27B0;
-    }
-    #bar3 .bar-side {
-      background: #7B1FA2;
-    }
-    #bar3 .bar-top {
-      background: #BA68C8;
+    .percentage-container {
+      display: flex;
+      justify-content: space-around;
+      width: 50vw;
+      margin: 20px auto 0;
     }
 
-    /* 第四个柱状图 */
-    #bar4 .bar-front {
-      background: #FF9800;
-    }
-    #bar4 .bar-side {
-      background: #F57C00;
-    }
-    #bar4 .bar-top {
-      background: #FFB74D;
-    }
-
-    /* 第五个柱状图 */
-    #bar5 .bar-front {
-      background: #4CAF50;
-    }
-    #bar5 .bar-side {
-      background: #388E3C;
-    }
-    #bar5 .bar-top {
-      background: #81C784;
+    .percentage-text {
+      font-size: 5vw;
+      font-weight: bold;
+      color: white;
+      font-family: "Trade Winds", system-ui;
     }
 
     /* Fonts */
@@ -177,76 +145,52 @@
       font-weight: 700;
       font-style: normal;
     }
-
-    .name-label {
-        position: absolute;
-        bottom: -40px;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 32px;
-        color: white;
-        font-family: "ZCOOL XiaoWei", sans-serif;
-        font-weight: 700;
-        white-space: nowrap;
-        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
-    }
   </style>
 </head>
 <body>
-  <h1 style="color: white; font-family: 'Trade Winds', system-ui; font-size: 48px; margin-bottom: 40px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">
-    Revival Round
-  </h1>
+  <div style="display: flex; justify-content: center; align-items: center; gap: 2vw;">
+    <div style="display: flex; align-items: center; gap: 1vw;">
+      <img src="./assets/img/image5.jpg" style="width: 10vw; height: 10vw; border-radius: 50%; object-fit: cover; border: 4px solid white;">
+      <span class="zcool-xiaowei-regular" style="font-size: 4.5vw; color: white;">选手5</span>
+    </div>
+    <span class="trade-winds-regular" style="font-size: 6vw; color: white;">PK</span>
+    <div style="display: flex; align-items: center; gap: 1vw;">
+      <span class="zcool-xiaowei-regular" style="font-size: 4.5vw; color: white;">选手6</span>
+      <img src="./assets/img/image6.jpeg" style="width: 10vw; height: 10vw; border-radius: 50%; object-fit: cover; border: 4px solid white;">
+    </div>
+  </div>
   <div class="bar-container">
     <div class="bar" id="bar1" style="height: 0%;">
       <div class="bar-front"></div>
       <div class="bar-side"></div>
       <div class="bar-top"></div>
-      <span id="bar1-label" class="percentage-text">0%</span>
-      <div id="name1" class="name-label"></div>
+      <span id="bar1-label">0%</span>
     </div>
     <div class="bar" id="bar2" style="height: 0%;">
       <div class="bar-front"></div>
       <div class="bar-side"></div>
       <div class="bar-top"></div>
-      <span id="bar2-label" class="percentage-text">0%</span>
-      <div id="name2" class="name-label"></div>
+      <span id="bar2-label">0%</span>
     </div>
-    <div class="bar" id="bar3" style="height: 0%;">
-      <div class="bar-front"></div>
-      <div class="bar-side"></div>
-      <div class="bar-top"></div>
-      <span id="bar3-label" class="percentage-text">0%</span>
-      <div id="name3" class="name-label"></div>
-    </div>
-    <div class="bar" id="bar4" style="height: 0%;">
-      <div class="bar-front"></div>
-      <div class="bar-side"></div>
-      <div class="bar-top"></div>
-      <span id="bar4-label" class="percentage-text">0%</span>
-      <div id="name4" class="name-label"></div>
-    </div>
-    <div class="bar" id="bar5" style="height: 0%;">
-      <div class="bar-front"></div>
-      <div class="bar-side"></div>
-      <div class="bar-top"></div>
-      <span id="bar5-label" class="percentage-text">0%</span>
-      <div id="name5" class="name-label"></div>
-    </div>
+  </div>
+  <div class="percentage-container">
+    <span id="candidate1-percentage" class="percentage-text">0%</span>
+    <span id="candidate2-percentage" class="percentage-text">0%</span>
   </div>
 
   <!-- 引入 JavaScript 文件 -->
-  <script src="revival.js"></script>
+  <script src="score13.js"></script>
   
   <!-- 键盘导航 -->
   <script>
     document.addEventListener('keydown', function(event) {
-      // 当按下右方向键或者数字键2时跳转到final.html
+      // 当按下右方向键或者数字键2时跳转到score14.html
       if (event.key === 'ArrowRight' || event.key === '2') {
-        window.location.href = 'final.html';
+        window.location.href = 'score14.html';
       }
-      // 当按下左方向键或者数字键0时跳转到score15.html
+      // 当按下左方向键或者数字键0时跳转到score12.html
       if (event.key === 'ArrowLeft' || event.key === '0') {
-        window.location.href = 'score15.html';
+        window.location.href = 'score12.html';
       }
     });
   </script>

@@ -55,3 +55,4 @@ setInterval(fetchVoteData, 60000);
 
 // 初次加载数据
 fetchVoteData();
+
