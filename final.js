@@ -6,27 +6,69 @@ const API_KEY = 'AIzaSyDCoRajSD0Eux3Yf7ZsiIt06ayoB_g1Tz0'; // 替换为你的API
 let currentDisplayCount = 0;  // 当前显示的分数数量
 
 function highlightWinner(scores) {
-    // 找出最高分
-    const maxScore = Math.max(...scores.slice(0, 6));
+    // 创建包含所有信息的数组
+    const contestantsData = scores.slice(0, 6).map((score, index) => ({
+        element: document.querySelector(`.contestant:nth-child(${index + 1})`),
+        score: score,
+        originalIndex: index
+    }));
     
-    // 找出所有最高分选手（可能有平局）
-    const winnerIndices = scores
-        .slice(0, 6)
-        .map((score, index) => ({ score, index }))
-        .filter(item => item.score === maxScore)
-        .map(item => item.index);
+    // 按分数降序排序
+    contestantsData.sort((a, b) => b.score - a.score);
 
-    // 移除所有现有的winner类
+    // 获取容器
+    const container = document.getElementById('contestants');
+    
+    // 清空容器
+    while (container.firstChild) {
+        container.removeChild(container.firstChild);
+    }
+
+    // 移除所有现有的名次类
     document.querySelectorAll('.contestant').forEach(el => {
-        el.classList.remove('winner');
+        el.classList.remove('winner-gold', 'winner-silver', 'winner-bronze');
     });
 
-    // 为胜者添加特效
-    winnerIndices.forEach(index => {
-        const winnerElement = document.querySelector(`.contestant:nth-child(${index + 1})`);
-        if (winnerElement) {
-            winnerElement.classList.add('winner');
+    // 获取不同的分数值（去重）并排序
+    const uniqueScores = [...new Set(contestantsData.map(data => data.score))].sort((a, b) => b - a);
+    
+    // 处理第一名
+    const goldScore = uniqueScores[0];
+    const goldMedalists = contestantsData.filter(data => data.score === goldScore);
+    goldMedalists.forEach(data => {
+        data.element.classList.add('winner-gold');
+    });
+
+    // 如果第一名没有并列，处理第二名
+    if (goldMedalists.length === 1 && uniqueScores.length > 1) {
+        const silverScore = uniqueScores[1];
+        const silverMedalists = contestantsData.filter(data => data.score === silverScore);
+        silverMedalists.forEach(data => {
+            data.element.classList.add('winner-silver');
+        });
+
+        // 如果第二名也没有并列，处理第三名
+        if (silverMedalists.length === 1 && uniqueScores.length > 2) {
+            const bronzeScore = uniqueScores[2];
+            const bronzeMedalists = contestantsData.filter(data => data.score === bronzeScore);
+            bronzeMedalists.forEach(data => {
+                data.element.classList.add('winner-bronze');
+            });
         }
+    } else if (goldMedalists.length > 1) {
+        // 如果第一名有并列，直接处理第三名（跳过银牌）
+        if (uniqueScores.length > 1) {
+            const bronzeScore = uniqueScores[1];  // 第二高的分数作为铜牌
+            const bronzeMedalists = contestantsData.filter(data => data.score === bronzeScore);
+            bronzeMedalists.forEach(data => {
+                data.element.classList.add('winner-bronze');
+            });
+        }
+    }
+
+    // 重新排列元素
+    contestantsData.forEach(data => {
+        container.appendChild(data.element);
     });
 }
 
@@ -50,20 +92,22 @@ async function fetchVoteData() {
                 }
             }
 
-            // 更新显示的分数
+            // 更新显示的分数，保留两位小数
             for (let i = 0; i < currentDisplayCount; i++) {
                 const score = scores[i];
                 const contestantNum = i + 1;
                 
                 const scoreElement = document.querySelector(`.contestant:nth-child(${contestantNum}) .score`);
                 if (scoreElement) {
-                    scoreElement.textContent = `${score.toFixed(1)}/10`;
+                    scoreElement.textContent = `${score.toFixed(2)}/10`;
                 }
             }
 
             // 如果所有分数都显示完了，突出显示胜者
             if (currentDisplayCount === 6) {
-                highlightWinner(scores);
+                setTimeout(() => {
+                    highlightWinner(scores);
+                }, 500);
             }
         }
     } catch (error) {
@@ -73,8 +117,10 @@ async function fetchVoteData() {
 
 // 监听键盘事件
 document.addEventListener('keydown', function(event) {
-    if (event.code === 'Space' && currentDisplayCount < 6) {  // 空格键
+    if (event.code === 'Space' && currentDisplayCount < 6) {  // 空格键显示下一个分数
         currentDisplayCount++;
+        fetchVoteData();
+    } else if (event.code === 'KeyR') {  // 按R键刷新所有数据
         fetchVoteData();
     }
 });
@@ -82,6 +128,3 @@ document.addEventListener('keydown', function(event) {
 // 初始化：显示所有名字，但不显示分数
 currentDisplayCount = 0;
 fetchVoteData();
-
-// 继续定时更新
-setInterval(fetchVoteData, 60000);
