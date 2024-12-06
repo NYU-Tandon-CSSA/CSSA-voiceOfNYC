@@ -154,14 +154,25 @@
     </div>
     <script src="final.js"></script>
 
-    <!-- 键盘导航 -->
-  <script>
-    document.addEventListener('keydown', function(event) {
-      // 当按下左方向键或者数字键0时跳转到revival.html
-      if (event.key === 'ArrowLeft' || event.key === '0') {
-        window.location.href = 'revival.html';
-      }
-    });
-  </script>
+    <script>
+        const shortcutMap = {
+            'Digit1': 'score11.html',
+            'Digit2': 'score12.html',
+            'Digit3': 'score13.html',
+            'Digit4': 'score14.html',
+            'Digit5': 'score15.html',
+            'KeyT': 'transition.html',
+            'KeyS': 'sponsor.html',
+            'KeyR': 'revival.html',
+            'KeyF': 'final.html'
+        };
+    
+        document.addEventListener('keydown', (event) => {
+            if (shortcutMap[event.code]) {
+                window.location.href = shortcutMap[event.code];
+            }
+        });
+    </script>    
+    
 </body>
 </html>
