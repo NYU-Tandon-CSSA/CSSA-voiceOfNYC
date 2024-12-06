@@ -50,7 +50,7 @@
       position: relative;
       transform: rotateY(-20deg);
       transform-origin: center;
-      transition: all 0.5s ease;
+      transition: all 2s ease;
       margin: 0 40px;
     }
 
@@ -187,18 +187,25 @@
   <!-- 引入 JavaScript 文件 -->
   <script src="score14.js"></script>
   
-  <!-- 键盘导航 -->
   <script>
-    document.addEventListener('keydown', function(event) {
-      // 当按下右方向键或者数字键2时跳转到score15.html
-      if (event.key === 'ArrowRight' || event.key === '2') {
-        window.location.href = 'score15.html';
-      }
-      // 当按下左方向键或者数字键0时跳转到score13.html
-      if (event.key === 'ArrowLeft' || event.key === '0') {
-        window.location.href = 'score13.html';
-      }
+    const shortcutMap = {
+        'Digit1': 'score11.html',
+        'Digit2': 'score12.html',
+        'Digit3': 'score13.html',
+        'Digit4': 'score14.html',
+        'Digit5': 'score15.html',
+        'KeyT': 'transition.html',
+        'KeyS': 'sponsor.html',
+        'KeyR': 'revival.html',
+        'KeyF': 'final.html'
+    };
+
+    document.addEventListener('keydown', (event) => {
+        if (shortcutMap[event.code]) {
+            window.location.href = shortcutMap[event.code];
+        }
     });
-  </script>
+</script>
+
 </body>
 </html>
