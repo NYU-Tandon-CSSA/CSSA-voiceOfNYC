@@ -44,6 +44,7 @@
             margin: 2vh 30px;
             text-align: center;
             width: calc(33.33% - 60px);
+            transition: all 0.5s ease-in-out;
         }
         .avatar {
             width: 150px;
@@ -65,19 +66,55 @@
             font-family: 'Trade Winds', cursive;
             margin-top: 15px;
         }
-        .winner {
+        .winner-gold {
             transform: scale(1.1);
             transition: all 0.5s ease;
         }
 
-        .winner .score {
-            color: gold;
+        .winner-gold .score {
+            color: #FFD700;  /* 明亮的金色 */
             font-size: 64px;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);  /* 金色发光效果 */
         }
 
-        .winner .name {
-            color: gold;
+        .winner-gold .name {
+            color: #FFD700;
             font-size: 36px;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+        }
+
+        .winner-silver {
+            transform: scale(1.05);
+            transition: all 0.5s ease;
+        }
+
+        .winner-silver .score {
+            color: #E8E8E8;  /* 明亮的银色 */
+            font-size: 58px;
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);  /* 银色发光效果 */
+        }
+
+        .winner-silver .name {
+            color: #E8E8E8;
+            font-size: 34px;
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+        }
+
+        .winner-bronze {
+            transform: scale(1);
+            transition: all 0.5s ease;
+        }
+
+        .winner-bronze .score {
+            color: #77A8A8;  /* 偏青色的青铜色 */
+            font-size: 52px;
+            text-shadow: 0 0 10px rgba(119, 168, 168, 0.6);  /* 青铜色发光效果 */
+        }
+
+        .winner-bronze .name {
+            color: #77A8A8;
+            font-size: 32px;
+            text-shadow: 0 0 10px rgba(119, 168, 168, 0.6);
         }
     </style>
 </head>
