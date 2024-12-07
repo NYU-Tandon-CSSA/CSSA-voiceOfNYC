@@ -4,6 +4,7 @@ const RANGE = 'Final!A1:B6';
 const API_KEY = 'AIzaSyDCoRajSD0Eux3Yf7ZsiIt06ayoB_g1Tz0'; // 替换为你的API密钥
 
 let currentDisplayCount = 0;  // 当前显示的分数数量
+let showingAllContestants = true;  // 新增全局变量
 
 function highlightWinner(scores) {
     // 创建包含所有信息的数组
@@ -29,7 +30,7 @@ function highlightWinner(scores) {
         el.classList.remove('winner-gold', 'winner-silver', 'winner-bronze');
     });
 
-    // 获取不同的分数值（去重）并排序
+    // 获取不��分数值（去重）并排序
     const uniqueScores = [...new Set(contestantsData.map(data => data.score))].sort((a, b) => b - a);
     
     // 处理第一名
@@ -67,9 +68,12 @@ function highlightWinner(scores) {
     }
 
     // 重新排列元素
-    contestantsData.forEach(data => {
+    contestantsData.forEach((data, index) => {
         container.appendChild(data.element);
+        data.element.style.display = 'block';  // 确保所有选手都显示
     });
+    
+    showingAllContestants = true;  // 设置标志，表示当前显示所有选手
 }
 
 async function fetchVoteData() {
@@ -103,12 +107,8 @@ async function fetchVoteData() {
                 }
             }
 
-            // 如果所有分数都显示完了，突出显示胜者
-            if (currentDisplayCount === 6) {
-                setTimeout(() => {
-                    highlightWinner(scores);
-                }, 500);
-            }
+            // 存储分数供后续使用
+            window.lastScores = scores;
         }
     } catch (error) {
         console.error('Error fetching data from Google Sheets:', error);
@@ -117,10 +117,35 @@ async function fetchVoteData() {
 
 // 监听键盘事件
 document.addEventListener('keydown', function(event) {
-    if (event.code === 'Space' && currentDisplayCount < 6) {  // 空格键显示下一个分数
-        currentDisplayCount++;
-        fetchVoteData();
-    } else if (event.code === 'KeyR') {  // 按R键刷新所有数据
+    if (event.code === 'Space') {
+        if (currentDisplayCount < 6) {  // 显示下一个分数
+            currentDisplayCount++;
+            fetchVoteData();
+        } else if (currentDisplayCount === 6 && !window.winnerHighlighted) {  // 显示获奖特效
+            highlightWinner(window.lastScores);
+            window.winnerHighlighted = true;
+        } else if (showingAllContestants) {  // 隐藏后三名并调整前三名间距
+            const contestants = document.querySelectorAll('.contestant');
+            contestants.forEach((contestant, index) => {
+                if (index > 2) {
+                    contestant.style.display = 'none';
+                } else {
+                    // 减小前三名之间的间距
+                    contestant.style.margin = '2vh 30px';  
+                    contestant.style.display = 'inline-block';
+                }
+            });
+            showingAllContestants = false;
+        }
+    } else if (event.code === 'KeyR') {  // 按R键重置
+        currentDisplayCount = 0;
+        showingAllContestants = true;
+        window.winnerHighlighted = false;
+        document.querySelectorAll('.contestant').forEach(el => {
+            el.style.display = 'block';
+            el.classList.remove('winner-gold', 'winner-silver', 'winner-bronze');
+            el.style.margin = '2vh 30px';  // 重置为原始间距
+        });
         fetchVoteData();
     }
 });

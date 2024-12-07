@@ -54,11 +54,14 @@
             margin-bottom: 15px;
         }
         .name {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: bold;
             margin-bottom: 12px;
             color: white;
             font-family: 'ZCOOL XiaoWei', sans-serif;
+            max-width: 500px;
+            margin: 0 auto;
+            word-wrap: break-word;
         }
         .score {
             font-size: 50px;
@@ -67,54 +70,49 @@
             margin-top: 15px;
         }
         .winner-gold {
-            transform: scale(1.1);
-            transition: all 0.5s ease;
+            /* 移除 transform: scale(1.1); */
         }
 
         .winner-gold .score {
             color: #FFD700;  /* 明亮的金色 */
-            font-size: 64px;
             text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);  /* 金色发光效果 */
         }
 
         .winner-gold .name {
             color: #FFD700;
-            font-size: 36px;
             text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
         }
 
         .winner-silver {
-            transform: scale(1.05);
-            transition: all 0.5s ease;
+            /* 移除 transform: scale(1.05); */
         }
 
         .winner-silver .score {
             color: #E8E8E8;  /* 明亮的银色 */
-            font-size: 58px;
             text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);  /* 银色发光效果 */
         }
 
         .winner-silver .name {
             color: #E8E8E8;
-            font-size: 34px;
             text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
         }
 
         .winner-bronze {
-            transform: scale(1);
-            transition: all 0.5s ease;
+            /* 移除 transform: scale(1); */
         }
 
         .winner-bronze .score {
             color: #77A8A8;  /* 偏青色的青铜色 */
-            font-size: 52px;
             text-shadow: 0 0 10px rgba(119, 168, 168, 0.6);  /* 青铜色发光效果 */
         }
 
         .winner-bronze .name {
             color: #77A8A8;
-            font-size: 32px;
             text-shadow: 0 0 10px rgba(119, 168, 168, 0.6);
+        }
+
+        .contestant.hidden {
+            visibility: hidden;  /* 使用 visibility: hidden 而不是 display: none 以保持布局 */
         }
     </style>
 </head>
@@ -122,32 +120,32 @@
     <h1>Final Round</h1>
     <div id="contestants">
         <div class="contestant">
-            <img src="assets/img/image1.jpg" alt="Avatar 1" class="avatar">
+            <img src="assets/img/contestant/questionMark.png" alt="Avatar 1" class="avatar">
             <div class="name" id="name1"></div>
             <div class="score" id="bar1-label">0/10</div>
         </div>
         <div class="contestant">
-            <img src="assets/img/image2.jpg" alt="Avatar 2" class="avatar">
+            <img src="assets/img/contestant/questionMark.png" alt="Avatar 2" class="avatar">
             <div class="name" id="name2"></div>
             <div class="score" id="bar2-label">0/10</div>
         </div>
         <div class="contestant">
-            <img src="assets/img/image3.jpg" alt="Avatar 3" class="avatar">
+            <img src="assets/img/contestant/questionMark.png" alt="Avatar 3" class="avatar">
             <div class="name" id="name3"></div>
             <div class="score" id="bar3-label">0/10</div>
         </div>
         <div class="contestant">
-            <img src="assets/img/image4.jpg" alt="Avatar 4" class="avatar">
+            <img src="assets/img/contestant/questionMark.png" alt="Avatar 4" class="avatar">
             <div class="name" id="name4"></div>
             <div class="score" id="bar4-label">0/10</div>
         </div>
         <div class="contestant">
-            <img src="assets/img/image5.jpg" alt="Avatar 5" class="avatar">
+            <img src="assets/img/contestant/questionMark.png" alt="Avatar 5" class="avatar">
             <div class="name" id="name5"></div>
             <div class="score" id="bar5-label">0/10</div>
         </div>
         <div class="contestant">
-            <img src="assets/img/image6.jpeg" alt="Avatar 6" class="avatar">
+            <img src="assets/img/contestant/questionMark.png" alt="Avatar 6" class="avatar">
             <div class="name" id="name6"></div>
             <div class="score" id="bar6-label">0/10</div>
         </div>
